@@ -18,9 +18,9 @@ base_path = os.getcwd()
 
 project_path = ('/').join(base_path.split('/')[0:-3]) 
 
-answers_input_path = os.path.join(project_path, '/Volumes/Moon/SpringBoard/spark-optimization/data/answers')
+answers_input_path = os.path.join(project_path, '/spark-optimization/data/answers')
 
-questions_input_path = os.path.join(project_path, '/Volumes/Moon/SpringBoard/spark-optimization/data/questions')
+questions_input_path = os.path.join(project_path, '/spark-optimization/data/questions')
 
 answersDF = spark.read.option('path', answers_input_path).load()
 
@@ -172,6 +172,7 @@ See the query plan of the previous result and rewrite the query to optimize it
 
 
 # Solution 1
+- In a distributed environment, having proper data distribution becomes a key tool for boosting performance. `repartition()` allows us to control the data distribution on the Spark cluster. Therefore, we can reduce the number of shuffles than the orignal query.
 - We will repartition the answersDF dataframe by `creation_date` column as new column named `month`
 
 
